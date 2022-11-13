@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 07-11-2022 a las 17:28:31
+-- Tiempo de generación: 08-11-2022 a las 17:36:07
 -- Versión del servidor: 5.7.33
 -- Versión de PHP: 7.4.19
 
@@ -18,8 +18,114 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
+-- Base de datos: `herramientas3`
+--
+CREATE DATABASE IF NOT EXISTS `herramientas3` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
+USE `herramientas3`;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `producto`
+--
+
+CREATE TABLE `producto` (
+  `codigo` bigint(20) NOT NULL,
+  `nombre` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
+  `cantidad` int(5) NOT NULL,
+  `precio` decimal(8,4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `producto`
+--
+
+INSERT INTO `producto` (`codigo`, `nombre`, `cantidad`, `precio`) VALUES
+(2, 'sdf', 123, '123.0000');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `rol`
+--
+
+CREATE TABLE `rol` (
+  `id` bigint(10) NOT NULL,
+  `nombre` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
+  `sesion` varchar(20) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `rol`
+--
+
+INSERT INTO `rol` (`id`, `nombre`, `sesion`) VALUES
+(1, 'administrador', 'admin.php');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `id` bigint(20) NOT NULL,
+  `id_rol` bigint(10) NOT NULL,
+  `nombre` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
+  `usuario` varchar(12) COLLATE utf8_spanish_ci NOT NULL,
+  `contrasena` varchar(12) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`id`, `id_rol`, `nombre`, `usuario`, `contrasena`) VALUES
+(1234, 1, 'Alejandro', 'alejo', 'alejo123'),
+(4567, 1, 'Pepe', 'pepito', '1234');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `producto`
+--
+ALTER TABLE `producto`
+  ADD PRIMARY KEY (`codigo`);
+
+--
+-- Indices de la tabla `rol`
+--
+ALTER TABLE `rol`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_rol` (`id_rol`);
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `rol`
+--
+ALTER TABLE `rol`
+  ADD CONSTRAINT `rol_ibfk_1` FOREIGN KEY (`id`) REFERENCES `usuario` (`id_rol`) ON DELETE CASCADE ON UPDATE CASCADE;
+--
+-- Base de datos: `inventario`
+--
+CREATE DATABASE IF NOT EXISTS `inventario` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `inventario`;
+--
 -- Base de datos: `tiendavirtual`
 --
+CREATE DATABASE IF NOT EXISTS `tiendavirtual` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `tiendavirtual`;
 
 -- --------------------------------------------------------
 
@@ -31,7 +137,7 @@ CREATE TABLE `asesor` (
   `numAs` int(11) NOT NULL,
   `id` varchar(10) NOT NULL,
   `nombre` varchar(50) NOT NULL,
-  `telefono` bigint(20) NOT NULL
+  `telefono` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -108,7 +214,10 @@ CREATE TABLE `usuarios` (
   `id` varchar(10) NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `direccion` varchar(50) NOT NULL,
-  `telefono` varchar(13) NOT NULL
+  `telefono` varchar(10) NOT NULL,
+  `usuario` varchar(30) NOT NULL,
+  `correo` varchar(100) NOT NULL,
+  `contrasena` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -177,6 +286,7 @@ ALTER TABLE `rolesusuario`
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`numUsu`),
   ADD UNIQUE KEY `idUsuario` (`id`),
+  ADD UNIQUE KEY `Usuario` (`usuario`),
   ADD KEY `nombreUsuario` (`nombre`);
 
 --
