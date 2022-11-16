@@ -73,7 +73,6 @@ CREATE TABLE `producto` (
   `precio` bigint(20) NOT NULL,
   `cantidad` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 -- --------------------------------------------------------
 
 --
