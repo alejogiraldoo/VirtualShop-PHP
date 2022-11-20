@@ -15,14 +15,14 @@
         $correo = $_POST["correo"];
         $pass = $_POST["pass"];
     
-        $consultaUser = "SELECT usuario FROM usuarios WHERE usuario = '$user' AND correo = '$correo'";
+        $consultaUser = "SELECT usuario FROM usuarios WHERE usuario = '$user' OR correo = '$correo'";
         $resultadoUser = $con->query($consultaUser);
         $filaUser = $resultadoUser->fetch_array();
         
         if(!empty($filaUser)){
             echo "
                 <script>
-                    window.alert('Este nombre de usuario o corre electronico ya fue registrado.');
+                    window.alert('This username or email has been already registered.');
                 </script>
             ";
         } else {

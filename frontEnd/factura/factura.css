@@ -1,0 +1,36 @@
+body {
+    width: 100%;
+}
+
+main {
+    width: 50%;
+    margin: auto;
+}
+
+h1 {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+p {
+    font-size: 25px;
+    text-align: center;
+}
+
+table {
+    margin: auto;
+    text-align: center;
+}
+
+th {
+    padding: 5px 15px 5px 15px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    
+}

@@ -14,7 +14,7 @@
         $producto->updateProducto($numPro, $nombre, $precio, $cantidad, $con);
 
         echo "<script>
-        window.alert('Los datos han sido actualizados exitosamente. ');
+        window.alert('Data has been updated succesfully. ');
         </script>";
 
     }
@@ -26,21 +26,21 @@
     
     echo '
         <main>
-            <form action="actualizar.php" method="get">
+            <form action="actualizarProd.php" method="get">
                 <div class="mb-3">
-                    <label for="exampleInputText1" class="form-label">Codigo</label>
+                    <label for="exampleInputText1" class="form-label">Code</label>
                     <input name="numPro" type="number" class="form-control" id="exampleInputText" aria-describedby="textHelp" value="'.$numPro.'" readonly/>
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputText1" class="form-label">Nombre del Producto</label>
+                    <label for="exampleInputText1" class="form-label">Product Name</label>
                     <input name="nombre" type="text" class="form-control" id="exampleText1" required value="'.$nombre.'"/>
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputText1" class="form-label">Precio</label>
+                    <label for="exampleInputText1" class="form-label">Price</label>
                     <input name="precio" type="number" class="form-control" id="exampleText1" required value="'.$precio.'"/>
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Cantidad</label>
+                    <label for="exampleInputPassword1" class="form-label">Quantity</label>
                     <input name="cantidad" type="number" class="form-control" id="exampleInputPassword1" required value="'.$cantidad.'" min="1"/>
                 </div>
                 <button name="actualizar" type="submit" class="btn btn-primary">Update</button>

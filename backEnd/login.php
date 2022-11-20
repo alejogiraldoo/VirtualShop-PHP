@@ -35,11 +35,11 @@
             if(count($fila) > 1){
                 echo "  
                 <script>            
-                    let answer = window.confirm('¿Deseas entrar como Usuario?');
+                    let answer = window.confirm('¿Do you want to Log In as User?');
                     if (answer){
-                        window.alert('Entraste como Usuario');
+                        window.alert('You have logged in as User');
                     }else{
-                        window.alert('Entraste como Administrador');
+                        window.alert('You have logged in as Administrator');
                     }
                     window.open('login.php?answer=' + answer,'_self');
                 </script>
@@ -56,7 +56,7 @@
         }else{
             echo "
                 <script>
-                    window.alert('El usuario o la contraseña es INCORRECTO...');
+                    window.alert('The username or password is WRONG...');
                 </script>
             ";
         }

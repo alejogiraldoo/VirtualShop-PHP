@@ -1,50 +1,55 @@
 <?php
     include "../frontEnd/factura/factura.html";
     include "Producto.php";
-    session_start();
-
     include "check-session.php";
+    include 'datos_conexion/conexion.php';
 
-    $codigo = $_GET["codigo"];
+    $numPro = $_GET["numPro"];
     $cantidad = $_GET["cantidad"];
     $ced_cliente = $_GET["ced_cliente"];
     $nom_cliente = $_GET["nom_cliente"];
     $tel_cliente = $_GET["tel_cliente"];
     $dir_cliente = $_GET["dir_cliente"];
-    $nombre = $_GET["nombre"];
-    $precio = $_GET["precio"];
 
-    echo "<h2>Datos del Cliente</h2>";
-    echo "<p>Identificación del Cliente: ".$ced_cliente."</p>";
-    echo "<p>Nombre del Cliente: ".$nom_cliente."<p>";
-    echo "<p>N° de Telefono del Cliente: ".$tel_cliente."</p>";
-    echo "<p>Dirección del Cliente: ".$dir_cliente."</p>";
-            
-    for ($i=0; $i < count($_SESSION["productos"]); $i++) { 
-        if($_SESSION["productos"][$i]->getNombre() == $nombre) {
-            
-            echo "<h2>Datos de la Compra</h2>";
-            echo "
-                <table border='1'>
-                    <tr>
-                        <th>Codigo</th>
-                        <th>Nombre</th>
-                        <th>Precio</th>
-                        <th>Cantidad</th>
-                        <th>Total</th>
-                    </tr>
-                ";
-            echo"
+    $consultaNombre = "SELECT nombre FROM producto WHERE numPro = $numPro";
+    $resultadoNombre = $con->query($consultaNombre);
+    $filaNombre = $resultadoNombre->fetch_array();
+
+    $consultaPrecio = "SELECT precio FROM producto WHERE numPro = $numPro";
+    $resultadoPrecio= $con->query($consultaPrecio);
+    $filaPrecio = $resultadoPrecio->fetch_array();
+
+    echo "<h2>Client Information</h2>";
+    echo "<p>ID: ".$ced_cliente."</p>";
+    echo "<p>Full Name: ".$nom_cliente."<p>";
+    echo "<p>Contact Number: ".$tel_cliente."</p>";
+    echo "<p>Address: ".$dir_cliente."</p>";
+          
+    $consulta = "SELECT numPro FROM producto WHERE numPro = $numPro";
+    $resultado = $con->query($consulta);
+    $fila = $resultado->fetch_array();
+
+    if($fila[0] == $numPro) {
+        echo "<h2>Purchase Details</h2>";
+        echo "
+            <table border='1'>
                 <tr>
-                    <td>".$codigo."</td>
-                    <td>".$nombre."</td>
-                    <td>".$precio."</td>
-                    <td>".$cantidad."</td>
-                    <td>".$precio * $cantidad."</td>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
                 </tr>
             ";
-            echo"</table>";
-            break;
-        }
+        echo"
+            <tr>
+                <td>".$numPro."</td>
+                <td>".$filaNombre[0]."</td>
+                <td>".$filaPrecio[0]."</td>
+                <td>".$cantidad."</td>
+                <td>".$filaPrecio[0] * $cantidad."</td>
+            </tr>
+        ";
+        echo"</table>";
     }
 ?>

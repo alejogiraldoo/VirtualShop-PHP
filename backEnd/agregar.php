@@ -17,7 +17,7 @@
             if(count($filaRep) > 1) {
                 echo "
                     <script>
-                        window.alert('Este producto ya fue agregado, actualiza el registro existente. ');
+                        window.alert('This product already exists, update the existing product. ');
                         window.history.back();
                     </script>;
                 ";
@@ -29,7 +29,7 @@
 
         echo "
         <script>
-            window.alert('Producto agregado exitosamente. ');
+            window.alert('Product added succesfully. ');
             window.history.back();
         </script>;
         ";

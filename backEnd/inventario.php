@@ -32,6 +32,7 @@
                 </tr>
         ";
         $i = 0;
+        
         while ($i < count($fila)) {
             echo"
             <tr>
@@ -44,8 +45,8 @@
             
             if ($_SESSION["user"]->getRol() == "administrador") {
                 echo "
-                <b><a href='actualizar.php?numPro=" . $fila[$i][0] . "&nombre=" . $fila[$i][1] . "&precio=" . $fila[$i][2] . "&cantidad=" . $fila[$i][3] . "'>Update |</a></b>
-                <b><a href='eliminar.php?numPro=" . $fila[$i][0] . "'>Delete  </a></b>
+                <b><a href='actualizarProd.php?numPro=" . $fila[$i][0] . "&nombre=" . $fila[$i][1] . "&precio=" . $fila[$i][2] . "&cantidad=" . $fila[$i][3] . "'>Update |</a></b>
+                <b><a href='eliminarProd.php?numPro=" . $fila[$i][0] . "'>Delete  </a></b>
                 ";
             }
             
