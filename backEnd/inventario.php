@@ -11,6 +11,8 @@
     
     if ($_SESSION["user"]->getRol() == "administrador") {
         echo '<li class="nav-item"><a class="nav-link active" aria-current="page" href="agregar.php">Add Product</a></li>';
+    } else {
+        echo '<li class="nav-item"><a class="nav-link active" aria-current="page" href="agregados.php">Shopping Cart</a></li>';
     }
     
     echo '</ul></div></div></nav></header><br>';
@@ -51,7 +53,7 @@
             }
             
             if ($_SESSION["user"]->getRol() == "usuario") {
-                echo "<b><a href='vender.php?numPro=" . $fila[$i][0] . "&nombre=" . $fila[$i][1] . "&precio=" . $fila[$i][2] . "&cantidad=" . $fila[$i][3] ."'>Buy</a></b>";
+                echo "<b><a href='vender.php?numPro=" . $fila[$i][0] . "&nombre=" . $fila[$i][1] . "&precio=" . $fila[$i][2] . "&cantidad=" . $fila[$i][3] ."'>Add to Shopping Cart</a></b>";
             } 
             
             echo "   
